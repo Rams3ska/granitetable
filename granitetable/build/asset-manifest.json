@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.aa41584b.chunk.css",
+    "main.js": "./static/js/main.cfeb5839.chunk.js",
+    "main.js.map": "./static/js/main.cfeb5839.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.3fd9f32d.js",
+    "runtime-main.js.map": "./static/js/runtime-main.3fd9f32d.js.map",
+    "static/js/2.7531e465.chunk.js": "./static/js/2.7531e465.chunk.js",
+    "static/js/2.7531e465.chunk.js.map": "./static/js/2.7531e465.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.f2af7a9257f917dfd788aa29d3eaeecb.js": "./precache-manifest.f2af7a9257f917dfd788aa29d3eaeecb.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.aa41584b.chunk.css.map": "./static/css/main.aa41584b.chunk.css.map",
+    "static/js/2.7531e465.chunk.js.LICENSE.txt": "./static/js/2.7531e465.chunk.js.LICENSE.txt",
+    "static/media/1231414.png": "./static/media/1231414.3b28b0d9.png",
+    "static/media/2.jpg": "./static/media/2.56307b1a.jpg",
+    "static/media/68c16041fdcf2f72dbe48506f694f15b.jpg": "./static/media/68c16041fdcf2f72dbe48506f694f15b.111a4438.jpg",
+    "static/media/cambria-brittanicca.jpg": "./static/media/cambria-brittanicca.13909fb5.jpg",
+    "static/media/list.svg": "./static/media/list.0d1c6e18.svg",
+    "static/media/stoleshnicy-7hpkzk.jpg": "./static/media/stoleshnicy-7hpkzk.202733b2.jpg",
+    "static/media/stone10.jpg": "./static/media/stone10.14849a2e.jpg",
+    "static/media/unnamed (1).jpg": "./static/media/unnamed (1).2069fd6c.jpg",
+    "static/media/unnamed.jpg": "./static/media/unnamed.2d85b8d7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3fd9f32d.js",
+    "static/js/2.7531e465.chunk.js",
+    "static/css/main.aa41584b.chunk.css",
+    "static/js/main.cfeb5839.chunk.js"
+  ]
+}

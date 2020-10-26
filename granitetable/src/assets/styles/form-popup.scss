@@ -1,0 +1,75 @@
+.error {
+	border-color: #e67b7b;
+}
+
+form {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 100%;
+
+	font-family: 'Montserrat';
+
+	h2 {
+		font-family: 'Montserrat';
+		text-align: center;
+		font-weight: 300;
+		font-size: xx-large;
+		margin: 0px;
+	}
+
+	input,
+	textarea {
+		position: relative;
+		width: 100%;
+		margin: 5px;
+		outline: none;
+		border-radius: 5px;
+		border: 1px solid;
+		height: 30px;
+		padding: 5px 5px;
+		box-sizing: border-box;
+		border-color: #d0d0d0;
+		font-family: 'Montserrat';
+	}
+	textarea {
+		min-height: 100px;
+		max-height: 100px;
+		resize: none;
+	}
+	div {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+.submit__button {
+	border-radius: 35px;
+	height: 40px;
+	font-size: 18px;
+	font-weight: 400;
+
+	background-color: #4bd4a1;
+	color: rgb(255, 255, 255);
+	border: none;
+
+	transition: 300ms;
+
+	&:hover {
+		background-color: #ffffff;
+		color: rgba(0, 0, 0, 0.8);
+		border: 1px solid #4bd4a1;
+	}
+
+	&:active {
+		transform: scale(1.02);
+	}
+}
+
+@media (max-width: 525px) {
+	h2 {
+		font-size: 24px !important;
+	}
+}

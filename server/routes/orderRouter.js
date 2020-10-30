@@ -1,9 +1,9 @@
 const express = require('express');
-const { body, validationResult } = require('express-validator');
 const orderController = require('../controllers/orderController');
+const validator = require('../models/validator');
 const orderRouter = express.Router();
 
-orderRouter.post('/create', [body('name')], orderController.addOrder);
+orderRouter.post('/create', validator.addOrder, orderController.addOrder);
 orderRouter.get('/getall', orderController.getOrders);
 
 module.exports = orderRouter;

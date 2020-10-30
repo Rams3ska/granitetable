@@ -68,6 +68,13 @@ function App() {
 		const response = await fetch('http://localhost:5000/api/orders/create', requestOptions);
 		const data = await response.json();
 
+		// console.log(order);
+		if (!data.error) {
+			setTimeout(() => {
+				setFormPopup(false);
+			}, 2000);
+		}
+
 		setUserFormLog(data.message);
 	};
 

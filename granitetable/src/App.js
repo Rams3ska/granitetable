@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Container, Toolbar } from '@material-ui/core';
 import Image_1 from './assets/img/1231414.png';
 import Gallery from './components/Gallery.jsx';
@@ -43,12 +43,25 @@ function App() {
 	const [navPopup, setNavpopup] = useState(true);
 	const [userFormLog, setUserFormLog] = useState('');
 	const [captcha, setCaptcha] = useState(null);
+	const [images, setImages] = useState([]);
 
 	const aboutUsRef = useRef(null);
 	const footerRef = useRef(null);
 
-	const importAll = (r) => r.keys().map(r);
-	const images = importAll(require.context('./assets/gallery', false, /\.(png|jpe?g|svg)$/));
+	const imgUrl = 'http://localhost:5000/gallery/';
+
+	useEffect(() => {
+		fetch('http://localhost:5000/api/images/get')
+			.then((res) => res.json())
+			.then((result) => {
+				result.images.forEach((x) => {
+					setImages((old) => [...old, imgUrl + x]);
+				});
+			});
+	}, []);
+
+	// const importAll = (r) => r.keys().map(r);
+	// const images = importAll(require.context('./assets/gallery', false, /\.(png|jpe?g|svg)$/));
 
 	const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth' });
 
@@ -157,7 +170,7 @@ function App() {
 					</div>
 				</section>
 				<section className="gallery">
-					<Gallery images={images} />
+					<Gallery images={Array.from(images).splice(0, 10)} />
 				</section>
 				<section className="about-company content-padding" ref={aboutUsRef}>
 					<h1>О НАС</h1>

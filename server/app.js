@@ -1,10 +1,13 @@
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 
 const sql = require('./models/db');
 
 const orderRouter = require('./routes/orderRouter');
+const { fileURLToPath } = require('url');
 
 const app = express();
 const PORT = 5000;
@@ -25,6 +28,19 @@ app.use(express.json());
 // routes
 
 app.use('/api/orders', orderRouter);
+app.use('/gallery', express.static(path.join(__dirname, 'public/static/gallery')));
+
+app.get('/api/images/get', (req, res) => {
+	// res.status(501).json({ message: 'cool' });
+	const images = [];
+
+	fs.readdirSync(path.join(__dirname, 'public/static/gallery')).forEach((file) => {
+		images.push(file);
+	});
+
+	res.status(500).json({ images: images });
+});
+
 //
 
 app.use((req, res, next) => {

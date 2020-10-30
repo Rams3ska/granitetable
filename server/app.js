@@ -32,13 +32,21 @@ app.use('/gallery', express.static(path.join(__dirname, 'public/static/gallery')
 
 app.get('/api/images/get', (req, res) => {
 	// res.status(501).json({ message: 'cool' });
-	const images = [];
+	// const images = [];
 
-	fs.readdirSync(path.join(__dirname, 'public/static/gallery')).forEach((file) => {
-		images.push(file);
+	// fs.readdirSync(path.join(__dirname, 'public/static/gallery')).forEach((file) => {
+	// 	images.push(file);
+	// });
+
+	fs.readdir(path.join(__dirname, 'public/static/gallery'), (err, data) => {
+		if (err) {
+			return res.status(400).json({ error: err });
+		}
+
+		res.status(500).json({ images: data });
 	});
 
-	res.status(500).json({ images: images });
+	// res.status(500).json({ images: images });
 });
 
 //

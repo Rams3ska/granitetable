@@ -68,6 +68,17 @@ form {
 	}
 }
 
+.out-log {
+	position: relative;
+
+	width: 100%;
+	height: auto;
+
+	text-align: center;
+
+	font-size: 12px;
+}
+
 @media (max-width: 525px) {
 	h2 {
 		font-size: 24px !important;

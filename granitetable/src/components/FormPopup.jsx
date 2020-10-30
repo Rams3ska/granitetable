@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PopupContainer from './Popup'
+import ReCAPTCHA from 'react-google-recaptcha'
 import '../assets/styles/form-popup.scss'
 import { useForm } from "react-hook-form";
 
-export default function FormPopup({ onDisable, onUpdateForm }) {
+export default function FormPopup({ onDisable, onUpdateForm, outLog, sendCaptcha }) {
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data =>  { 
+
+    const [activeCaptcha, setActiveCaptcha] = useState(null);
+
+    const onSubmit = (data) =>  { 
         onUpdateForm(data)
-        // console.log(data); 
     }
 
     const content = (
@@ -45,9 +48,15 @@ export default function FormPopup({ onDisable, onUpdateForm }) {
                     ref={register({required: true, minLength: 11, maxLength: 12, pattern: /^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}$/})}
                 />
             </div>
-            
             <div><textarea placeholder="Какие-либо пожелания.." name="comment" ref={register}></textarea></div>
+            <span className="out-log">{outLog}</span>
             <div><input type="submit" className="submit__button" value="ОТПРАВИТЬ ЗАЯВКУ"/></div>
+            <div style={(activeCaptcha ? {contentVisibility: 'hidden', justifyContent: 'center'} : {contentVisibility: 'visible', justifyContent: 'center'})}>
+                <ReCAPTCHA sitekey="6LdvF90ZAAAAAJ_NenQSJU2y6G2JJO5DrUZ6DvRT" onChange={(val) => {
+                    sendCaptcha(val)
+                    setActiveCaptcha(val)
+                }}/>
+            </div>
         </form>
     );
     return (

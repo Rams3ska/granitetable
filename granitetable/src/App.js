@@ -41,7 +41,8 @@ function App() {
 	const [galleryPopup, setGalleryPopup] = useState(false);
 	const [formPopup, setFormPopup] = useState(false);
 	const [navPopup, setNavpopup] = useState(true);
-	const [userForm, setUserForm] = useState({});
+	const [userFormLog, setUserFormLog] = useState('');
+	const [captcha, setCaptcha] = useState(null);
 
 	const aboutUsRef = useRef(null);
 	const footerRef = useRef(null);
@@ -51,9 +52,23 @@ function App() {
 
 	const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth' });
 
-	const onFormSubmited = (data) => {
-		console.log(data);
-		setFormPopup(!formPopup);
+	const onFormSubmited = async (order) => {
+		if (!captcha) {
+			setUserFormLog('ОШИБКА! ПРОЙДИТЕ КАПТЧУ');
+			return;
+		}
+
+		const requestOptions = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(order),
+		};
+		const response = await fetch('http://localhost:5000/api/orders/create', requestOptions);
+		const data = await response.json();
+
+		setUserFormLog(data.message);
 	};
 
 	return (
@@ -73,6 +88,10 @@ function App() {
 					}}
 					onUpdateForm={(data) => {
 						onFormSubmited(data);
+					}}
+					outLog={userFormLog}
+					sendCaptcha={(value) => {
+						setCaptcha(value);
 					}}
 				></FormPopup>
 			)}

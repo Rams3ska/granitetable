@@ -41,13 +41,14 @@ form {
 	div {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: center;
 	}
 }
 
 .submit__button {
 	border-radius: 35px;
-	height: 40px;
+	height: 32px;
+	width: 180px;
 	font-size: 18px;
 	font-weight: 400;
 

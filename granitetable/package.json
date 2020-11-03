@@ -8,7 +8,11 @@
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
 		"@testing-library/user-event": "^7.2.1",
+		"aws-sdk": "^2.783.0",
+		"bcrypt": "^5.0.0",
+		"bcryptjs": "^2.4.3",
 		"bootstrap": "^4.5.3",
+		"crypto": "^1.0.1",
 		"node-sass": "^4.14.1",
 		"react": "^17.0.1",
 		"react-animation": "^1.2.2",
@@ -17,6 +21,7 @@
 		"react-google-recaptcha": "^2.1.0",
 		"react-hook-form": "^6.9.6",
 		"react-material-ui-carousel": "^2.0.2",
+		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.4"
 	},
 	"scripts": {

@@ -1,0 +1,44 @@
+.admin-root {
+	display: flex !important;
+
+	width: 100% !important;
+	height: auto !important;
+
+	background-color: silver !important;
+}
+
+.table-container {
+	position: relative;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 1500px;
+	min-width: 800px;
+	width: 100%;
+
+	padding: 0px 20px;
+}
+
+.approve {
+	background-color: #dcdcdc;
+	outline: none;
+	border: 1px solid #b5b5b5;
+	border-radius: 2px;
+
+	transition: 200ms;
+
+	&:hover {
+		transform: scale(1.2);
+	}
+
+	&:active {
+		transform: scale(1.1);
+	}
+}
+
+.active {
+	background-color: teal !important;
+	color: white;
+}

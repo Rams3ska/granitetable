@@ -4,18 +4,34 @@ import { MainPage, AdminPage, AuthPage } from './routes';
 
 import './App.scss';
 
-const urlAPI = 'http://localhost:5000';
+const urlAPI = 'http://localhost:50114/api';
 
 function App() {
 	const [isAuth, setAuth] = useState(false);
 
 	useEffect(() => {
-		fetch(`${urlAPI}/api/auth`, { method: 'GET' })
-			.then((data) => data.json())
-			.then((data) => {
-				setAuth(data.loggedIn);
-				console.log(data.loggedIn);
-			});
+		if (localStorage.getItem('access-token')) {
+			const requestOptions = {
+				method: 'GET',
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+				},
+				redirect: 'follow',
+			};
+
+			fetch(`${urlAPI}/values/getlogin`, requestOptions)
+				.then((response) => response.json())
+				.then((result) => {
+					setAuth(result.isLoggin);
+				})
+				.catch((error) => {
+					console.log('getloginerror', error);
+
+					localStorage.removeItem('access-token');
+
+					setAuth(false);
+				});
+		}
 	}, []);
 
 	return (

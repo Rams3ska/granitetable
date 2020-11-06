@@ -20,15 +20,15 @@ export default function FormPopup({ onDisable, onUpdateForm, outLog, sendCaptcha
 				<input
 					type="text"
 					placeholder="Имя"
-					name="name"
-					className={errors.name && 'error'}
+					name="FirstName"
+					className={errors.FirstName && 'error'}
 					ref={register({ required: true, maxLength: 32, pattern: /^[a-zA-Zа-яА-Я]{1,32}$/ })}
 				/>
 				<input
 					type="text"
 					placeholder="Фамилия"
-					name="surname"
-					className={errors.surname && 'error'}
+					name="LastName"
+					className={errors.LastName && 'error'}
 					ref={register({ required: true, maxLength: 32, pattern: /^[a-zA-Zа-яА-Я]{1,32}$/ })}
 				/>
 			</div>
@@ -36,8 +36,8 @@ export default function FormPopup({ onDisable, onUpdateForm, outLog, sendCaptcha
 				<input
 					type="text"
 					placeholder="E-Mail"
-					name="email"
-					className={errors.email && 'error'}
+					name="Email"
+					className={errors.Email && 'error'}
 					ref={register({
 						required: true,
 						pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gm /* eslint-disable-line */,
@@ -46,13 +46,13 @@ export default function FormPopup({ onDisable, onUpdateForm, outLog, sendCaptcha
 				<input
 					type="text"
 					placeholder="Номер телефона"
-					name="phone"
-					className={errors.phone && 'error'}
+					name="Phone"
+					className={errors.Phone && 'error'}
 					ref={register({ required: true, minLength: 11, maxLength: 12, pattern: /^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}$/ })}
 				/>
 			</div>
 			<div>
-				<textarea placeholder="Какие-либо пожелания.." name="comment" ref={register}></textarea>
+				<textarea placeholder="Какие-либо пожелания.." name="Comment" ref={register}></textarea>
 			</div>
 			<span className="out-log">{outLog}</span>
 			<div className="submit-container">

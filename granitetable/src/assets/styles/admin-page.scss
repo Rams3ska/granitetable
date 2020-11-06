@@ -42,3 +42,41 @@
 	background-color: teal !important;
 	color: white;
 }
+
+.filter-container {
+	position: fixed;
+	height: 70px;
+	min-width: 100px;
+	width: auto;
+	background-color: white;
+	box-shadow: 0 0 6px 2px #00000050;
+	border-radius: 5px;
+	z-index: 9999;
+	margin-left: 50%;
+	margin-top: 90vh;
+
+	padding: 5px;
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	.filter-input:last-child {
+		border-right: none;
+	}
+}
+
+.filter-input {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	padding: 0px 5px;
+
+	border-right: 1px solid rgb(223, 223, 223);
+}

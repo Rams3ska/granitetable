@@ -46,16 +46,25 @@ export default function MainPage({ api }) {
 	const aboutUsRef = useRef(null);
 	const footerRef = useRef(null);
 
-	const imgUrl = `${api}/api/gallery/`;
+	const imgUrl = `${api}/gallery/`;
 
 	useEffect(() => {
-		fetch(`${api}/api/images/get`)
-			.then((res) => res.json())
+		//
+
+		const requestOptions = {
+			method: 'GET',
+			headers: [],
+			redirect: 'follow',
+		};
+
+		fetch(`${api}/gallery`, requestOptions)
+			.then((response) => response.json())
 			.then((result) => {
-				result.images.forEach((x) => {
+				result.forEach((x) => {
 					setImages((old) => [...old, imgUrl + x]);
 				});
-			});
+			})
+			.catch((error) => console.log('error: ', error));
 	}, [api, imgUrl]);
 
 	// const importAll = (r) => r.keys().map(r);
@@ -69,6 +78,25 @@ export default function MainPage({ api }) {
 			return;
 		}
 
+		console.log(order);
+
+		const requestOptions = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: order,
+		};
+
+		await fetch(`${api}/order/add`, requestOptions)
+			.then((data) => data.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.log('error: ', error);
+			});
+		/*
 		const requestOptions = {
 			method: 'POST',
 			headers: {
@@ -76,7 +104,7 @@ export default function MainPage({ api }) {
 			},
 			body: JSON.stringify(order),
 		};
-		const response = await fetch('http://localhost:5000/api/orders/create', requestOptions);
+		const response = await fetch(`${api}/orders/create`, requestOptions);
 		const data = await response.json();
 
 		// console.log(order);
@@ -87,6 +115,7 @@ export default function MainPage({ api }) {
 		}
 
 		setUserFormLog(data.message);
+		*/
 	};
 
 	return (

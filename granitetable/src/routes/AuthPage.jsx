@@ -22,26 +22,20 @@ export default function AuthPage({ auth, api }) {
 				'X-Frame-Options': 'DENY',
 				'Strict-Transport-Security': 'max-age=expireTime',
 			},
-			body: JSON.stringify({ login: data.login, password: data.password }),
+			body: JSON.stringify({ Login: data.login, Password: data.password }),
 		};
 
-		fetch(`${api}/api/auth`, requestOptions)
+		fetch(`${api}/account/token`, requestOptions)
 			.then((data) => data.json())
 			.then((data) => {
-				console.log(data);
-
-				// if (data.errs) window.location.reload(false);
-				if (data.message) {
-					setOutLog(data.message);
-
-					setTimeout(() => {
-						auth(true);
-					}, 1000);
-				} else if (data.errs) {
-					setOutLog(data.errs);
+				if (data.access_token !== undefined) {
+					localStorage.setItem('access-token', data.access_token);
+					auth(true);
+				} else if (data.err) {
+					setOutLog(data.err);
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log('error: ', err));
 	};
 
 	return (

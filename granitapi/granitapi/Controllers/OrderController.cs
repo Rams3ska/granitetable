@@ -36,9 +36,9 @@ namespace granitapi.Controllers
         {
             var filtred = db.Orders.ToList();
 
-            if(approved)
+            if (approved)
             {
-                filtred = filtred.Where(x => x.IsApproved == true).ToList();
+                filtred = filtred.Where(x => x.IsApproved == 1).ToList();
             }
 
             return filtred;
@@ -59,9 +59,22 @@ namespace granitapi.Controllers
         // POST api/<OrderController>
         [AllowAnonymous]
         [HttpPost("add")]
-        public void Post([FromBody] string FirstName)
+        public IActionResult Post([FromBody] OrderModel order)
         {
-            Debug.WriteLine(FirstName);
+            var exist = db.Orders.Where(x => x.Phone == order.Phone || x.Email == order.Email).FirstOrDefault();
+
+            if(exist != null)
+            {
+                return Ok(new { err = "Данный пользователь уже есть в базе!" });
+            }
+
+            order.CreateDate = DateTime.Now.ToString("R");
+            order.IsApproved = 0;
+
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            return Ok(new { msg = "Форма успешно отправлена!" });
         }
 
         // PUT api/<OrderController>/5

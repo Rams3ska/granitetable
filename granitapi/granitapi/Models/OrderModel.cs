@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace granitapi.Models
         [Required]
         public string Phone { get; set; }
         public string Comment { get; set; }
-        public bool IsApproved { get; set; }
+        public uint IsApproved { get; set; }
         public string CreateDate { get; set; }
 
         public override string ToString()

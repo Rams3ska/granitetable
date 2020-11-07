@@ -78,20 +78,23 @@ export default function MainPage({ api }) {
 			return;
 		}
 
-		console.log(order);
-
 		const requestOptions = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: order,
+			body: JSON.stringify(order),
 		};
 
 		await fetch(`${api}/order/add`, requestOptions)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
+				if (data.err) {
+					setUserFormLog(`Ошибка: ${data.err}`);
+				} else if (data.msg) {
+					setUserFormLog(data.msg);
+				}
 			})
 			.catch((error) => {
 				console.log('error: ', error);

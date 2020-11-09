@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import '../assets/styles/auth-page.scss';
 
 export default function AuthPage({ auth, api }) {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit } = useForm();
 
 	const [outLog, setOutLog] = useState('USE LOGIN AND PASSWORD');
 

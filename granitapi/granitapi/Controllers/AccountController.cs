@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using granitapi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using TokenApp;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,12 +19,6 @@ namespace granitapi.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private List<UserModel> people = new List<UserModel>
-        {
-            new UserModel { Login="test", Password="12345", Id=0 },
-            new UserModel { Login="sosok", Password="55555", Id=1 }
-        };
-        
         [HttpPost("token")]
         public IActionResult Token([FromBody]Auth auth)
         {
@@ -54,19 +50,18 @@ namespace granitapi.Controllers
 
         private ClaimsIdentity GetIdentity(Auth auth)
         {
-            UserModel UserModel = people.FirstOrDefault(x => x.Login == auth.Login && x.Password == auth.Password);
-            if (UserModel != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, UserModel.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin")
-                };
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
-            }
+            Auth user = JsonConvert.DeserializeObject<Auth>(System.IO.File.ReadAllText(@"AdminAccount.json"));
 
-            return null;
+            if (user.Login != auth.Login || user.Password != auth.Password) return null;
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin")
+            };
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+            return claimsIdentity;
         }
     }
 }

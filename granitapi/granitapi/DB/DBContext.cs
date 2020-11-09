@@ -11,7 +11,6 @@ namespace granitapi.DB
 {
     public class DBContext : DbContext
     {
-        public DbSet<UserModel> Users { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
 
         public DBContext(DbContextOptions<DBContext> options)

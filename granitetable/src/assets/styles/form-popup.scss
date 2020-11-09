@@ -46,22 +46,21 @@ form {
 }
 
 .submit__button {
-	border-radius: 35px;
-	height: 32px;
-	width: 180px;
-	font-size: 18px;
+	border-radius: 5px;
+	height: 32px !important;
+	width: auto !important;
+	font-size: 18px !important;
 	font-weight: 400;
 
 	background-color: #4bd4a1;
 	color: rgb(255, 255, 255);
-	border: none;
+	border: 1px solid #4bd4a1;
 
 	transition: 300ms;
 
 	&:hover {
 		background-color: #ffffff;
 		color: rgba(0, 0, 0, 0.8);
-		border: 1px solid #4bd4a1;
 	}
 
 	&:active {
@@ -82,6 +81,6 @@ form {
 
 @media (max-width: 525px) {
 	h2 {
-		font-size: 24px !important;
+		font-size: 21px !important;
 	}
 }

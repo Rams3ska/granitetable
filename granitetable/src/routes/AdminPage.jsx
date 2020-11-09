@@ -85,34 +85,71 @@ export default function AdminPage({ api }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row) => {
-							if (row.isApproved === true && filter.approved === false) return;
-							return (
-								<TableRow key={row.id} style={row.isApproved ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}>
-									<TableCell component="th" scope="row">
-										{row.id}
-									</TableCell>
-									<TableCell align="left">
-										{row.firstName} {row.lastName}
-									</TableCell>
-									<TableCell align="left">{row.phone}</TableCell>
-									<TableCell align="left">{row.email}</TableCell>
-									<TableCell align="left">{row.comment}</TableCell>
-									<TableCell align="left">{row.createDate}</TableCell>
-									<TableCell align="center">{row.isApproved ? 'Готово' : 'Не готово'}</TableCell>
-									<TableCell align="center">
-										<input
-											type="button"
-											value="&#9745;"
-											className="approve"
-											onClick={() => {
-												changeActive(row.id);
-											}}
-										></input>
-									</TableCell>
-								</TableRow>
-							);
-						})}
+						{
+							rows
+								.filter((row) => {
+									if (row.isApproved === true && filter.approved === false) return false;
+									return true;
+								})
+								.map((row) => {
+									return (
+										<TableRow key={row.id} style={row.isApproved ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}>
+											<TableCell component="th" scope="row">
+												{row.id}
+											</TableCell>
+											<TableCell align="left">
+												{row.firstName} {row.lastName}
+											</TableCell>
+											<TableCell align="left">{row.phone}</TableCell>
+											<TableCell align="left">{row.email}</TableCell>
+											<TableCell align="left">{row.comment}</TableCell>
+											<TableCell align="left">{row.createDate}</TableCell>
+											<TableCell align="center">{row.isApproved ? 'Готово' : 'Не готово'}</TableCell>
+											<TableCell align="center">
+												<input
+													type="button"
+													value="&#9745;"
+													className="approve"
+													onClick={() => {
+														changeActive(row.id);
+													}}
+												></input>
+											</TableCell>
+										</TableRow>
+									);
+								})
+
+							/*
+							rows.map((row) => {
+								if (row.isApproved === true && filter.approved === false) return;
+								return (
+									<TableRow key={row.id} style={row.isApproved ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}>
+										<TableCell component="th" scope="row">
+											{row.id}
+										</TableCell>
+										<TableCell align="left">
+											{row.firstName} {row.lastName}
+										</TableCell>
+										<TableCell align="left">{row.phone}</TableCell>
+										<TableCell align="left">{row.email}</TableCell>
+										<TableCell align="left">{row.comment}</TableCell>
+										<TableCell align="left">{row.createDate}</TableCell>
+										<TableCell align="center">{row.isApproved ? 'Готово' : 'Не готово'}</TableCell>
+										<TableCell align="center">
+											<input
+												type="button"
+												value="&#9745;"
+												className="approve"
+												onClick={() => {
+													changeActive(row.id);
+												}}
+											></input>
+										</TableCell>
+									</TableRow>
+								);
+							})
+							*/
+						}
 					</TableBody>
 				</Table>
 			</TableContainer>

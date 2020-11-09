@@ -321,3 +321,4 @@ D:\Develops\react\GraniteTable\granitapi\granitapi\bin\Debug\netcoreapp3.1\Micro
 D:\Develops\react\GraniteTable\granitapi\granitapi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\Develops\react\GraniteTable\granitapi\granitapi\obj\Debug\netcoreapp3.1\granitapi.csproj.CoreCompileInputs.cache
 D:\Develops\react\GraniteTable\granitapi\granitapi\obj\Debug\netcoreapp3.1\granitapi.MvcApplicationPartsAssemblyInfo.cache
+D:\Develops\react\GraniteTable\granitapi\granitapi\bin\Debug\netcoreapp3.1\AdminAccount.json
